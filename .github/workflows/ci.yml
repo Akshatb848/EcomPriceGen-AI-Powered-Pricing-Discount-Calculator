@@ -1,0 +1,27 @@
+name: CI
+
+# The notebooks need a GPU and Hugging Face access, so CI does not execute them.
+# It checks that they parse, that their code has no syntax errors or undefined
+# names, and that no credentials are committed.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pytest ruff==0.8.6
+      - name: Ruff on notebooks and scripts (syntax errors, undefined names)
+        run: ruff check . --select E9,F63,F7,F82
+      - name: Notebook + secret checks
+        run: pytest -v tests
