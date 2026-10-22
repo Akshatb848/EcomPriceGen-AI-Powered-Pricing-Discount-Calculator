@@ -1,0 +1,3 @@
+pytest
+ruff==0.8.6
+matplotlib  # only for scripts/plot_training_loss.py

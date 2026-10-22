@@ -1,0 +1,20 @@
+# Libraries the notebooks import (they were run on Google Colab with a GPU).
+# Heavy: pulls in PyTorch. Not needed for the CI checks (see requirements-dev.txt).
+pandas
+numpy
+requests
+sentence-transformers
+faiss-cpu
+transformers
+accelerate
+bitsandbytes
+peft
+datasets
+auto-gptq
+optimum
+huggingface_hub
+langchain
+langchain-community
+langchain-huggingface
+chromadb
+kagglehub
